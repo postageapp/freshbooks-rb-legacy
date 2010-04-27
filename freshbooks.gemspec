@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "README",
      "Rakefile",
      "VERSION",
+     "freshbooks.gemspec",
      "lib/freshbooks.rb",
      "lib/freshbooks/base.rb",
      "lib/freshbooks/category.rb",

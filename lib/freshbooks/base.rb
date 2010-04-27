@@ -174,7 +174,7 @@ module FreshBooks
       response.success?
     end
     
-    def api_get_action!(action_name, object_id)
+    def self.api_get_action!(action_name, object_id)
       response = FreshBooks::Base.connection.call_api(
         "#{api_class_name}.#{action_name}",
         "#{api_class_name}_id" => object_id)
