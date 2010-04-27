@@ -1,13 +1,35 @@
 module FreshBooks
   class Recurring < FreshBooks::Base
     define_schema do |s|
-      s.string :first_name, :last_name, :organization, :p_street1, :p_street2, :p_city
-      s.string :p_state, :p_country, :p_code, :lines, :status, :notes, :terms, :frequency
-      s.date :date
-      s.fixnum :recurring_id, :client_id, :po_number, :occurrences
-      s.float :discount, :amount
-      s.array :lines
-      s.boolean :stopped, :send_email, :send_snail_mail
+      s.date    :date
+      s.fixnum  :client_id,
+                :recurring_id,
+                :po_number,
+                :occurences
+      s.float   :discount,
+                :amount
+      s.string  :frequency,
+                :currency_code,
+                :notes,
+                :terms,
+                :first_name,
+                :last_name,
+                :organization,
+                :p_street1,
+                :p_street2,
+                :p_city,
+                :p_state,
+                :p_country,
+                :p_code,
+                :vat_name,
+                :vat_number,
+                :return_uri,
+                :status
+      s.boolean :send_email,
+                :send_snail_mail,
+                :stopped
+      s.object  :autobill
+      s.array   :lines
     end
     
     actions :list, :get, :create, :update, :delete
