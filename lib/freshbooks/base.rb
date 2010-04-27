@@ -101,13 +101,22 @@ module FreshBooks
           define_class_method(method_name) do |object_id|
             api_get_action(api_action_name, object_id)
           end
+          define_class_method("#{method_name}!") do |object_id|
+            api_get_action!(api_action_name, object_id)
+          end
         when "create"
           define_method(method_name) do
             api_create_action(api_action_name)
           end
+          define_method("#{method_name}!") do
+            api_create_action!(api_action_name)
+          end
         when "update"
           define_method(method_name) do
             api_update_action(api_action_name)
+          end
+          define_method("#{method_name}!") do
+            api_update_action!(api_action_name)
           end
         else
           define_method(method_name) do
@@ -163,6 +172,28 @@ module FreshBooks
         "#{self.class.api_class_name}.#{action_name}",
         self.class.api_class_name => self)
       response.success?
+    end
+    
+    def api_get_action!(action_name, object_id)
+      response = FreshBooks::Base.connection.call_api(
+        "#{api_class_name}.#{action_name}",
+        "#{api_class_name}_id" => object_id)
+      response.success? ? self.new_from_xml(response.elements[1]) : raise(Error, response.error_msg)
+    end
+    
+    def api_create_action!(action_name)
+      response = FreshBooks::Base.connection.call_api(
+        "#{self.class.api_class_name}.#{action_name}",
+        self.class.api_class_name => self)
+      self.primary_key_value = response.elements[1].text.to_i if response.success?
+      response.success? || raise(Error, response.error_msg)
+    end
+    
+    def api_update_action!(action_name)
+      response = FreshBooks::Base.connection.call_api(
+        "#{self.class.api_class_name}.#{action_name}",
+        self.class.api_class_name => self)
+      response.success? || raise(Error, response.error_msg)
     end
     
   end
