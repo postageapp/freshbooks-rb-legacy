@@ -105,12 +105,10 @@ module FreshBooks
       
       result = post_request(request)
       
-      if logger.debug?
-        logger.debug "Request:"
-        logger.debug request_body
-        logger.debug "Response:"
-        logger.debug result.body
-      end
+      logger.debug "\n----- FRESHBOOKS API REQUEST:\n"
+      logger.debug request_body
+      logger.debug "\n----- FRESHBOOKS API RESPONSE:\n"
+      logger.debug result.body
       
       check_for_api_error(result)
     end

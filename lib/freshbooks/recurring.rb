@@ -23,8 +23,8 @@ module FreshBooks
                 :p_code,
                 :vat_name,
                 :vat_number,
-                :return_uri,
-                :status
+                :return_uri
+      s.string  :status, :read_only => true
       s.boolean :send_email,
                 :send_snail_mail,
                 :stopped

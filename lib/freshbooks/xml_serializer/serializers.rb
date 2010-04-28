@@ -27,7 +27,7 @@ module FreshBooks
     class DateSerializer
       def self.to_node(member_name, value)
         element = REXML::Element.new(member_name)
-        element.text = value.to_s
+        element.text = Date.parse(value.to_s).to_s(:db)
         element
       end
       
@@ -68,6 +68,7 @@ module FreshBooks
     
     class ObjectSerializer
       def self.to_node(member_name, value)
+        return if value == :skip
         REXML::Document.new(value.to_xml(member_name))
       end
       
