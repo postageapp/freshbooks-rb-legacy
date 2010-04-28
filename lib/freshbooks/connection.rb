@@ -6,15 +6,17 @@ module FreshBooks
   class Connection
     attr_reader :account_url, :auth_token, :request_headers
     
-    @@logger = Logger.new(STDOUT)
+    @@logger = if defined?(::Rails.logger)
+        ::Rails.logger
+      elsif defined?(RAILS_DEFAULT_LOGGER)
+        RAILS_DEFAULT_LOGGER
+      else
+        Logger.new(STDOUT)
+      end
+      
     def logger
       @@logger
     end
-
-    def self.log_level=(level)
-      @@logger.level = level
-    end
-    self.log_level = Logger::WARN
     
     def initialize(account_url, auth_token, request_headers = {})
       raise InvalidAccountUrlError.new unless account_url =~ /^[0-9a-zA-Z\-_]+\.freshbooks\.com$/
