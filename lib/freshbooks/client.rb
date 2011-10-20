@@ -13,8 +13,7 @@ module FreshBooks
     actions :list, :get, :create, :update, :delete
     
     def invoices(options = {})
-      options.merge('client_id' => self.client_id)
-      Invoice::list(options)
+      Invoice::list(options.merge('client_id' => self.client_id))
     end
   end
 end
