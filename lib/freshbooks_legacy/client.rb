@@ -1,5 +1,5 @@
-module FreshBooks
-  class Client < FreshBooks::Base
+module FreshBooksLegacy
+  class Client < FreshBooksLegacy::Base
     define_schema do |s|
       s.string :first_name, :last_name, :organization, :email
       s.string :username, :password, :work_phone, :home_phone

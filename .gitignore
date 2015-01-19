@@ -1,3 +1,4 @@
+/Gemfile.lock
 test/live_test.rb
 test/fixtures/freshbooks_credentials.yml
 pkg/

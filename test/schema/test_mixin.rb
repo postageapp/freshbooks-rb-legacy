@@ -24,14 +24,14 @@ module Schema
     end
   end
 
-  class MyItem < FreshBooks::Base
+  class MyItem < FreshBooksLegacy::Base
     define_schema do |s|
       s.string :name
       s.string :read_only_name, :read_only => true
     end
   end
 
-  class MyItem2 < FreshBooks::Base
+  class MyItem2 < FreshBooksLegacy::Base
     define_schema do |s|
       s.string :name2
     end

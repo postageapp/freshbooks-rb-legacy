@@ -1,5 +1,5 @@
-module FreshBooks
-  class Card < FreshBooks::Base
+module FreshBooksLegacy
+  class Card < FreshBooksLegacy::Base
     define_schema do |s|
       s.string  :number,
                 :name

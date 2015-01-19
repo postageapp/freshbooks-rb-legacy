@@ -6,23 +6,23 @@ class LiveConnectionTest < Test::Unit::TestCase
   
   def setup
     fb_account_info = freshbooks_credentials(:fresh_books_test_account)
-    FreshBooks::Base.establish_connection(fb_account_info['account_url'], fb_account_info['api_key'])
+    FreshBooksLegacy::Base.establish_connection(fb_account_info['account_url'], fb_account_info['api_key'])
   end
 
   # just go out there and get a live connection and see if it returns anything
   def test_live_connection_with_start_session
-    FreshBooks::Base.connection.start_session do
-      clients = FreshBooks::Client.list("per_page" => 1)
-      FreshBooks::Invoice.list("per_page" => 100).collect do |invoice|
-        assert FreshBooks::Invoice.get(invoice.invoice_id)
+    FreshBooksLegacy::Base.connection.start_session do
+      clients = FreshBooksLegacy::Client.list("per_page" => 1)
+      FreshBooksLegacy::Invoice.list("per_page" => 100).collect do |invoice|
+        assert FreshBooksLegacy::Invoice.get(invoice.invoice_id)
       end 
     end
   end
   
   def test_live_connection_without_start_session
-    clients = FreshBooks::Client.list("per_page" => 1)
-    FreshBooks::Invoice.list("per_page" => 100).collect do |invoice|
-      assert FreshBooks::Invoice.get(invoice.invoice_id)
+    clients = FreshBooksLegacy::Client.list("per_page" => 1)
+    FreshBooksLegacy::Invoice.list("per_page" => 100).collect do |invoice|
+      assert FreshBooksLegacy::Invoice.get(invoice.invoice_id)
     end 
   end
 end

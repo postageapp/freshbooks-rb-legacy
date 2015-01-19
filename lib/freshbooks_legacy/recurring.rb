@@ -1,5 +1,5 @@
-module FreshBooks
-  class Recurring < FreshBooks::Base
+module FreshBooksLegacy
+  class Recurring < FreshBooksLegacy::Base
     define_schema do |s|
       s.date    :date
       s.fixnum  :client_id,

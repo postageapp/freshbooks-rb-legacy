@@ -1,5 +1,5 @@
-module FreshBooks
-  class Project < FreshBooks::Base
+module FreshBooksLegacy
+  class Project < FreshBooksLegacy::Base
     define_schema do |s|
       s.string :name, :bill_method, :description
       s.fixnum :project_id, :client_id

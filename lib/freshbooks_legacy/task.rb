@@ -1,5 +1,5 @@
-module FreshBooks
-  class Task < FreshBooks::Base
+module FreshBooksLegacy
+  class Task < FreshBooksLegacy::Base
     define_schema do |s|
       s.fixnum :task_id
       s.string :name, :description

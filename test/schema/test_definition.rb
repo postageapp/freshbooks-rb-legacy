@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper.rb'
 module Schema
   class TestDefinition < Test::Unit::TestCase
     def setup
-      @definition = FreshBooks::Schema::Definition.new
+      @definition = FreshBooksLegacy::Schema::Definition.new
     end
     
     def test_method_missing

@@ -1,5 +1,5 @@
-module FreshBooks
-  class Estimate < FreshBooks::Base
+module FreshBooksLegacy
+  class Estimate < FreshBooksLegacy::Base
     define_schema do |s|
       s.string :estimate_id, :status, :date, :notes, :terms, :first_name
       s.string :last_name, :organization, :p_street1, :p_street2, :p_city

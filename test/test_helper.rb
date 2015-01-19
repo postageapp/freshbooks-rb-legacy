@@ -31,7 +31,7 @@ class Test::Unit::TestCase
   
   def mock_connection(file_name)
     mock_connection = MockConnection.new(fixture_xml_content(file_name))
-    FreshBooks::Base.stubs(:connection).with().returns(mock_connection)
+    FreshBooksLegacy::Base.stubs(:connection).with().returns(mock_connection)
     mock_connection
   end
   

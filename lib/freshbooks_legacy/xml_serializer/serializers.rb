@@ -1,4 +1,4 @@
-module FreshBooks
+module FreshBooksLegacy
   module XmlSerializer
     class FixnumSerializer
       def self.to_node(member_name, value)
@@ -73,7 +73,7 @@ module FreshBooks
       end
       
       def self.to_value(xml_val)
-        FreshBooks::const_get(xml_val.name.camelize)::new_from_xml(xml_val) 
+        FreshBooksLegacy::const_get(xml_val.name.camelize)::new_from_xml(xml_val) 
       end
     end
     
@@ -88,12 +88,12 @@ module FreshBooks
       
       def self.to_value(xml_val)
         xml_val.elements.map { |elem|
-          FreshBooks::const_get(elem.name.camelize)::new_from_xml(elem)
+          FreshBooksLegacy::const_get(elem.name.camelize)::new_from_xml(elem)
         }
       end
     end
     
-    # FreshBooks datetimes are specified in gmt-4. This library assumes utc and
+    # FreshBooksLegacy datetimes are specified in gmt-4. This library assumes utc and
     # will convert to the appropriate timezone.
     class DateTimeSerializer
       def self.to_node(member_name, value)

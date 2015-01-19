@@ -1,5 +1,5 @@
-module FreshBooks
-  class Category < FreshBooks::Base
+module FreshBooksLegacy
+  class Category < FreshBooksLegacy::Base
     define_schema do |s|
       s.fixnum :category_id
       s.float :tax1, :tax2

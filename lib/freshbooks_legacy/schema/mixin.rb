@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/definition'
 
-module FreshBooks
+module FreshBooksLegacy
   module Schema
     module Mixin
       def self.included(base)
@@ -11,7 +11,7 @@ module FreshBooks
         def define_schema
           # Create the class method accessor for the schema definition
           cattr_accessor :schema_definition
-          self.schema_definition ||= FreshBooks::Schema::Definition.new
+          self.schema_definition ||= FreshBooksLegacy::Schema::Definition.new
           
           # Yield to the block for the user to define the schema
           yield self.schema_definition

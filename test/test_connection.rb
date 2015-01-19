@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/test_helper.rb'
 
 class TestConnection < Test::Unit::TestCase
   def setup
-    @connection = FreshBooks::Connection.new("company.freshbooks.com", "auth_token")
+    @connection = FreshBooksLegacy::Connection.new("company.freshbooks.com", "auth_token")
   end
   
   def test_connection_accessors
@@ -12,7 +12,7 @@ class TestConnection < Test::Unit::TestCase
   
   def test_connection_request_headers
     request_headers = { "key" => "value" }
-    connection = FreshBooks::Connection.new("company.freshbooks.com", "auth_token", request_headers)
+    connection = FreshBooksLegacy::Connection.new("company.freshbooks.com", "auth_token", request_headers)
     assert_equal request_headers, connection.request_headers
   end
   
@@ -23,7 +23,7 @@ class TestConnection < Test::Unit::TestCase
   end
   
   def test_create_request__base_object_element
-    invoice = FreshBooks::Invoice.new
+    invoice = FreshBooksLegacy::Invoice.new
     invoice.expects(:to_xml).with().returns("<invoice><number>23</number></invoice>")
     
     request = @connection.send(:create_request, 'mymethod', 'invoice' => invoice)
@@ -40,7 +40,7 @@ class TestConnection < Test::Unit::TestCase
   def test_check_for_api_error__unknown_system
     response = Net::HTTPMovedPermanently.new("1.1", "301", "message")
     response.stubs(:[]).with("location").returns("loginSearch")
-    assert_raise(FreshBooks::UnknownSystemError) do
+    assert_raise(FreshBooksLegacy::UnknownSystemError) do
       @connection.send(:check_for_api_error, response)
     end
   end
@@ -48,34 +48,34 @@ class TestConnection < Test::Unit::TestCase
   def test_check_for_api_error__deactivated
     response = Net::HTTPMovedPermanently.new("1.1", "301", "message")
     response.stubs(:[]).with("location").returns("deactivated")
-    assert_raise(FreshBooks::AccountDeactivatedError) do
+    assert_raise(FreshBooksLegacy::AccountDeactivatedError) do
       @connection.send(:check_for_api_error, response)
     end
   end
   
   def test_check_for_api_error__unauthorized
     response = Net::HTTPUnauthorized.new("1.1", "401", "message")
-    assert_raise(FreshBooks::AuthenticationError) do
+    assert_raise(FreshBooksLegacy::AuthenticationError) do
       @connection.send(:check_for_api_error, response)
     end
   end
   
   def test_check_for_api_error__bad_request
     response = Net::HTTPBadRequest.new("1.1", "401", "message")
-    assert_raise(FreshBooks::ApiAccessNotEnabledError) do
+    assert_raise(FreshBooksLegacy::ApiAccessNotEnabledError) do
       @connection.send(:check_for_api_error, response)
     end
   end
   
   def test_check_for_api_error__internal_error
     response = Net::HTTPBadGateway.new("1.1", "502", "message")
-    assert_raise(FreshBooks::InternalError) do
+    assert_raise(FreshBooksLegacy::InternalError) do
       @connection.send(:check_for_api_error, response)
     end
     
     response = Net::HTTPMovedPermanently.new("1.1", "301", "message")
     response.stubs(:[]).with("location").returns("somePage")
-    assert_raise(FreshBooks::InternalError) do
+    assert_raise(FreshBooksLegacy::InternalError) do
       @connection.send(:check_for_api_error, response)
     end
   end

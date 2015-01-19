@@ -1,4 +1,4 @@
-module FreshBooks
+module FreshBooksLegacy
   class Response
     attr_accessor :doc
     

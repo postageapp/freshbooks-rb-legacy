@@ -1,5 +1,5 @@
-module FreshBooks
-  class TimeEntry < FreshBooks::Base
+module FreshBooksLegacy
+  class TimeEntry < FreshBooksLegacy::Base
     define_schema do |s|
       s.fixnum :time_entry_id, :project_id, :task_id, :staff_id
       s.float :hours

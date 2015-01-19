@@ -1,6 +1,6 @@
 require 'freshbooks/connection'
 
-class MockConnection < FreshBooks::Connection
+class MockConnection < FreshBooksLegacy::Connection
   def initialize(response_body)
     @response_body = response_body
   end

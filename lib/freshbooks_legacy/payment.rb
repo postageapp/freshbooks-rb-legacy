@@ -1,5 +1,5 @@
-module FreshBooks
-  class Payment < FreshBooks::Base
+module FreshBooksLegacy
+  class Payment < FreshBooksLegacy::Base
     define_schema do |s|
       s.fixnum :client_id, :invoice_id, :payment_id
       s.float :amount

@@ -1,5 +1,5 @@
-module FreshBooks
-  class Expiration < FreshBooks::Base
+module FreshBooksLegacy
+  class Expiration < FreshBooksLegacy::Base
     define_schema do |s|
       s.fixnum  :month,
                 :year

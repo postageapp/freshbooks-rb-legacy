@@ -36,7 +36,7 @@ require 'rexml/document'
 require 'logger'
 
 #------------------------------------------------------------------------------
-# FreshBooks.rb - Ruby interface to the FreshBooks API
+# FreshBooksLegacy.rb - Ruby interface to the FreshBooksLegacy API
 #
 # Copyright (c) 2007-2008 Ben Vinegar (http://www.benlog.org)
 #
@@ -46,25 +46,25 @@ require 'logger'
 #------------------------------------------------------------------------------
 # Usage:
 #
-# FreshBooks.setup('sample.freshbooks.com', 'mytoken')
+# FreshBooksLegacy.setup('sample.freshbooks.com', 'mytoken')
 #
-# clients = FreshBooks::Client.list
+# clients = FreshBooksLegacy::Client.list
 # client = clients[0]
 # client.first_name = 'Suzy'
 # client.update
 #
-# invoice = FreshBooks::Invoice.get(4)
+# invoice = FreshBooksLegacy::Invoice.get(4)
 # invoice.lines[0].quantity += 1
 # invoice.update
 #
-# item = FreshBooks::Item.new
+# item = FreshBooksLegacy::Item.new
 # item.name = 'A sample item'
 # item.create
 #
 #==============================================================================
-module FreshBooks
+module FreshBooksLegacy
   VERSION = '3.0.12'     # Gem version
-  API_VERSION = '2.1' # FreshBooks API version
+  API_VERSION = '2.1' # FreshBooksLegacy API version
   SERVICE_URL = "/api/#{API_VERSION}/xml-in"
 
   class Error < StandardError; end;
