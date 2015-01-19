@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/test_helper.rb'
+require_relative './test_helper'
 
-class TestPage < Test::Unit::TestCase
+class TestPage < MiniTest::Test
   def test_pages
     page = FreshBooksLegacy::Page.new(1, 2, 1)
     assert_equal 1, page.pages

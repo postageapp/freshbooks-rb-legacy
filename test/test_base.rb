@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/test_helper.rb'
+require_relative './test_helper'
 
-class TestBase < Test::Unit::TestCase
+class TestBase < MiniTest::Test
   def test_establish_connection
     assert_nil FreshBooksLegacy::Base.connection
     

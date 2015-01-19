@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
 module Schema
-  class TestDefinition < Test::Unit::TestCase
+  class TestDefinition < MiniTest::Test
     def setup
       @definition = FreshBooksLegacy::Schema::Definition.new
     end

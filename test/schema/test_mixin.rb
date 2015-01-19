@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
 module Schema
-  class TestMixin < Test::Unit::TestCase
+  class TestMixin < MiniTest::Test
     def test_define_schema__unique_definition_per_class
       assert MyItem.schema_definition.members.include?("name")
       assert !MyItem.schema_definition.members.include?("name2")

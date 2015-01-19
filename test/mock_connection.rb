@@ -1,4 +1,4 @@
-require 'freshbooks/connection'
+require 'freshbooks_legacy/connection'
 
 class MockConnection < FreshBooksLegacy::Connection
   def initialize(response_body)

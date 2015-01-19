@@ -1,5 +1,5 @@
-require 'freshbooks/schema/mixin'
-require 'freshbooks/xml_serializer'
+require 'freshbooks_legacy/schema/mixin'
+require 'freshbooks_legacy/xml_serializer'
 
 module FreshBooksLegacy
   class Base

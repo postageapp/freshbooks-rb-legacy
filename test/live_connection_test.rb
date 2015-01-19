@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/test_helper.rb'
+require_relative './test_helper'
 
 # this tests a live conection
 class LiveConnectionTest < Test::Unit::TestCase

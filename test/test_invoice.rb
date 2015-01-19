@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/test_helper.rb'
+require_relative './test_helper'
 
-class TestInvoice < Test::Unit::TestCase
+class TestInvoice < MiniTest::Test
   def test_list
     mock_call_api("invoice.list", { "page" => 1 }, "invoice_list_response")
     

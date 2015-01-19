@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/test_helper.rb'
+require_relative './test_helper'
 
-class TestConnection < Test::Unit::TestCase
+class TestConnection < MiniTest::Test
   def setup
     @connection = FreshBooksLegacy::Connection.new("company.freshbooks.com", "auth_token")
   end

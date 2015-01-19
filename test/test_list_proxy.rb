@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/test_helper.rb'
+require_relative './test_helper'
 
-class TestListProxy < Test::Unit::TestCase
+class TestListProxy < MiniTest::Test
   def test_size__should_be_total_size_of_results
     list_proxy = FreshBooksLegacy::ListProxy.new(create_proc(1, 2, 3))
     assert_equal 3, list_proxy.size

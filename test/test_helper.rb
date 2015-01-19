@@ -1,20 +1,26 @@
-require File.dirname(__FILE__) + '/../lib/freshbooks'
-
 require 'stringio'
-require 'test/unit'
-require File.dirname(__FILE__) + '/mock_connection'
+require 'minitest/autorun'
+
+require 'active_support/inflector'
+
+require_relative './mock_connection'
+
+$LOAD_PATH << File.expand_path('../lib', File.dirname(__FILE__))
+
+require 'freshbooks_legacy'
 
 begin
   require 'mocha'
+
 rescue LoadError
   require 'rubygems'
   gem 'mocha'
   require 'mocha'
 end
 
-class Test::Unit::TestCase
-  
+class MiniTest::Test
   @@fixtures = {}
+
   def self.fixtures list
     [list].flatten.each do |fixture|
       self.class_eval do
@@ -27,7 +33,6 @@ class Test::Unit::TestCase
       end
     end
   end
-  
   
   def mock_connection(file_name)
     mock_connection = MockConnection.new(fixture_xml_content(file_name))
