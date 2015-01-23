@@ -1,13 +1,14 @@
 require 'stringio'
 require 'minitest/autorun'
+require 'yaml'
 
 require 'active_support/inflector'
-
-require_relative './mock_connection'
 
 $LOAD_PATH << File.expand_path('../lib', File.dirname(__FILE__))
 
 require 'freshbooks_legacy'
+
+require_relative './mock_connection'
 
 begin
   require 'mocha'

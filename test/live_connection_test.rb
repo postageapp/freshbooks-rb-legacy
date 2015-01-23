@@ -1,7 +1,7 @@
 require_relative './test_helper'
 
 # this tests a live conection
-class LiveConnectionTest < Test::Unit::TestCase
+class LiveConnectionTest < MiniTest::Test
   fixtures :freshbooks_credentials
   
   def setup

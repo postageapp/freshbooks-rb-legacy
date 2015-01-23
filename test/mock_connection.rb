@@ -1,3 +1,4 @@
+require_relative 'test_helper'
 require 'freshbooks_legacy/connection'
 
 class MockConnection < FreshBooksLegacy::Connection

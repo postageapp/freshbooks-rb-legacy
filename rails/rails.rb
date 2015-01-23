@@ -1,1 +1,1 @@
-require 'freshbooks'
+require 'freshbooks_legacy'
