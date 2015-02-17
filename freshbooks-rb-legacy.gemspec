@@ -11,20 +11,20 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["ben@outright.com"]
-  s.date = "2015-01-19"
+  s.date = "2015-02-17"
   s.description = "Legacy FreshBooks API wrapper module"
   s.email = "tech@twg.ca"
   s.extra_rdoc_files = [
     "LICENSE",
-    "README"
+    "README.md"
   ]
   s.files = [
     "Gemfile",
-    "History.txt",
     "LICENSE",
-    "README",
+    "README.md",
     "Rakefile",
     "VERSION",
+    "freshbooks-rb-legacy.gemspec",
     "lib/freshbooks_legacy.rb",
     "lib/freshbooks_legacy/autobill.rb",
     "lib/freshbooks_legacy/base.rb",
@@ -79,13 +79,16 @@ Gem::Specification.new do |s|
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0.9.4"])
     else
+      s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0.9.4"])
     end
   else
+    s.add_dependency(%q<activesupport>, [">= 0"])
     s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<mocha>, [">= 0.9.4"])
   end
