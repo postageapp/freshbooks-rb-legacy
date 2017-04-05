@@ -81,18 +81,15 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activesupport>.freeze, [">= 0"])
       s.add_development_dependency(%q<jeweler>.freeze, [">= 0"])
-      s.add_development_dependency(%q<mocha>.freeze, [">= 0"])
       s.add_development_dependency(%q<mocha>.freeze, [">= 0.9.4"])
     else
       s.add_dependency(%q<activesupport>.freeze, [">= 0"])
       s.add_dependency(%q<jeweler>.freeze, [">= 0"])
-      s.add_dependency(%q<mocha>.freeze, [">= 0"])
       s.add_dependency(%q<mocha>.freeze, [">= 0.9.4"])
     end
   else
     s.add_dependency(%q<activesupport>.freeze, [">= 0"])
     s.add_dependency(%q<jeweler>.freeze, [">= 0"])
-    s.add_dependency(%q<mocha>.freeze, [">= 0"])
     s.add_dependency(%q<mocha>.freeze, [">= 0.9.4"])
   end
 end
