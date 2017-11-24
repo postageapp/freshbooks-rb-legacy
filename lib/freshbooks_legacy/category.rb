@@ -5,7 +5,7 @@ module FreshBooksLegacy
       s.float :tax1, :tax2
       s.string :name
     end
-    
+
     actions :list, :get, :create, :update, :delete
   end
 end

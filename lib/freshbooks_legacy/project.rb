@@ -6,7 +6,7 @@ module FreshBooksLegacy
       s.float :rate
       s.array :tasks
     end
-    
+
     actions :list, :get, :create, :update, :delete
   end
 end

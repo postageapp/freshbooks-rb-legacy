@@ -9,9 +9,9 @@ module FreshBooksLegacy
       s.fixnum :client_id
       s.object :links, :read_only => true
     end
-    
+
     actions :list, :get, :create, :update, :delete
-    
+
     def invoices(options = {})
       Invoice::list(options.merge('client_id' => self.client_id))
     end

@@ -3,7 +3,7 @@ $:.unshift(File.dirname(__FILE__)) unless
 
 begin
   require 'active_support'
-  
+
 rescue LoadError
   require 'rubygems'
   gem 'activesupport'
@@ -76,7 +76,7 @@ module FreshBooksLegacy
   class ApiAccessNotEnabledError < Error; end;
   class InvalidAccountUrlError < Error; end;
   class AccountDeactivatedError < Error; end;
-  
+
   class ParseError < StandardError
     attr_accessor :original_error, :xml
 

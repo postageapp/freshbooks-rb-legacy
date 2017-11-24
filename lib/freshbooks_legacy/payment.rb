@@ -7,7 +7,7 @@ module FreshBooksLegacy
       s.date_time :updated
       s.string :type, :notes
     end
-    
+
     actions :list, :get, :create, :update
   end
 end

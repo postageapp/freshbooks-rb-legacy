@@ -5,7 +5,7 @@ require 'logger'
 module FreshBooksLegacy
   class Connection
     attr_reader :account_url, :auth_token, :request_headers
-    
+
     @@logger = if defined?(::Rails.logger)
         ::Rails.logger
       elsif defined?(RAILS_DEFAULT_LOGGER)
@@ -13,31 +13,31 @@ module FreshBooksLegacy
       else
         Logger.new(STDOUT)
       end
-      
+
     def logger
       @@logger
     end
-    
+
     def initialize(account_url, auth_token, request_headers = {})
       raise InvalidAccountUrlError.new unless account_url =~ /^[0-9a-zA-Z\-_]+\.freshbooks\.com$/
-      
+
       @account_url = account_url
       @auth_token = auth_token
       @request_headers = request_headers
-      
+
       @start_session_count = 0
     end
-    
+
     def call_api(method, elements = [])
       request = create_request(method, elements)
       result = post(request)
       Response.new(result)
     end
-    
+
     def start_session(&block)
       @connection = obtain_connection if @start_session_count == 0
       @start_session_count = @start_session_count + 1
-      
+
       begin
         block.call(@connection)
       ensure
@@ -45,45 +45,45 @@ module FreshBooksLegacy
         close if @start_session_count == 0
       end
     end
-    
+
   protected
-    
+
     def create_request(method, elements = [])
       doc = REXML::Document.new '<?xml version="1.0" encoding="UTF-8"?>'
       request = doc.add_element('request')
       request.attributes['method'] = method
-      
+
       elements.each do |element|
         if element.kind_of?(Hash)
           element = element.to_a
         end
         key = element.first
         value = element.last
-        
+
         if value.kind_of?(Base)
           request.add_element(REXML::Document.new(value.to_xml))
         else
           request.add_element(REXML::Element.new(key.to_s)).text = value.to_s
         end
       end
-      
+
       doc.to_s
     end
-    
+
     def obtain_connection(force = false)
       return @connection if @connection && !force
-      
+
       @connection = Net::HTTP.new(@account_url, 443)
       @connection.use_ssl = true
       @connection.verify_mode = OpenSSL::SSL::VERIFY_NONE
       @connection.start
     end
-    
+
     def reconnect
       close
       obtain_connection(true)
     end
-    
+
     def close
       begin
         @connection.finish if @connection
@@ -92,7 +92,7 @@ module FreshBooksLegacy
       end
       @connection = nil
     end
-    
+
     def post(request_body)
       result = nil
       request = Net::HTTP::Post.new(FreshBooksLegacy::SERVICE_URL)
@@ -102,17 +102,17 @@ module FreshBooksLegacy
       @request_headers.each_pair do |name, value|
         request[name.to_s] = value
       end
-      
+
       result = post_request(request)
-      
+
       logger.debug "\n----- FRESHBOOKS API REQUEST:\n"
       logger.debug request_body
       logger.debug "\n----- FRESHBOOKS API RESPONSE:\n"
       logger.debug result.body
-      
+
       check_for_api_error(result)
     end
-    
+
     # For connections that take a long time, we catch EOFError's and reconnect seamlessly
     def post_request(request)
       response = nil
@@ -122,7 +122,7 @@ module FreshBooksLegacy
           response = connection.request(request)
         rescue EOFError => e
           raise e if has_reconnected
-          
+
           has_reconnected = true
           connection = reconnect
           retry
@@ -130,10 +130,10 @@ module FreshBooksLegacy
       end
       response
     end
-    
+
     def check_for_api_error(result)
       return result.body if result.kind_of?(Net::HTTPSuccess)
-      
+
       case result
       when Net::HTTPRedirection
         if result["location"] =~ /loginSearch/
@@ -146,7 +146,7 @@ module FreshBooksLegacy
       when Net::HTTPBadRequest
         raise ApiAccessNotEnabledError.new("API not enabled.")
       end
-      
+
       raise InternalError.new("Invalid HTTP code: #{result.class}")
     end
   end

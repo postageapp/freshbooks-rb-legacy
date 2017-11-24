@@ -5,11 +5,11 @@ module FreshBooksLegacy
     def self.to_value(node, type)
       create_serializer(type).to_value(node)
     end
-    
+
     def self.to_node(member_name, value, type)
       create_serializer(type).to_node(member_name, value)
     end
-    
+
     def self.create_serializer(type)
       "FreshBooksLegacy::XmlSerializer::#{type.to_s.classify}Serializer".constantize
     end

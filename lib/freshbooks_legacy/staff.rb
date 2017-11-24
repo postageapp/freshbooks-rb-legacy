@@ -7,7 +7,7 @@ module FreshBooksLegacy
       s.float :rate
       s.date_time :last_login, :signup_date
     end
-    
+
     actions :list, :get
   end
 end

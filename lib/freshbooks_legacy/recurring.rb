@@ -31,7 +31,7 @@ module FreshBooksLegacy
       s.object  :autobill
       s.array   :lines
     end
-    
+
     actions :list, :get, :create, :update, :delete
   end
 end

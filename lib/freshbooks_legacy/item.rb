@@ -5,7 +5,7 @@ module FreshBooksLegacy
       s.float :unit_cost
       s.string :name, :description
     end
-  
+
     actions :create, :update, :get, :delete, :list
   end
 end

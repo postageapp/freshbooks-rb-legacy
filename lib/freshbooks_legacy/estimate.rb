@@ -9,7 +9,7 @@ module FreshBooksLegacy
       s.array :lines
       s.object :links, :read_only => true
     end
-    
+
     actions :list, :get, :create, :update, :delete, :send_by_email
   end
 end
