@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<response xmlns="https://www.freshbooks.com/api/" status="ok">
+  <callback_id>1</callback_id>
+</response>

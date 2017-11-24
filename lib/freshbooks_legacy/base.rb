@@ -118,6 +118,10 @@ module FreshBooksLegacy
           define_method("#{method_name}!") do
             api_update_action!(api_action_name)
           end
+        when "verify"
+          define_method("#{method_name}!") do
+            api_update_action!(api_action_name)
+          end
         else
           define_method(method_name) do
             api_action(api_action_name)
@@ -179,6 +183,19 @@ module FreshBooksLegacy
         "#{api_class_name}.#{action_name}",
         "#{api_class_name}_id" => object_id)
       response.success? ? self.new_from_xml(response.elements[1]) : raise(Error, response.error_msg)
+    end
+
+    def api_verify_action(action_name)
+      response = FreshBooks::Base.connection.call_api(
+        "#{self.class.api_class_name}.#{action_name}",
+        self.class.api_class_name => self)
+      if response.success?
+        @error_msg = nil
+        true
+      else
+        @error_msg = response.error_msg
+        false
+      end
     end
 
     def api_create_action!(action_name)

@@ -31,6 +31,7 @@ require 'freshbooks_legacy/time_entry'
 require 'freshbooks_legacy/autobill'
 require 'freshbooks_legacy/card'
 require 'freshbooks_legacy/expiration'
+require 'freshbooks_legacy/callback'
 
 require 'net/https'
 require 'rexml/document'
