@@ -106,9 +106,9 @@ module FreshBooksLegacy
       result = post_request(request)
 
       logger.debug "\n----- FRESHBOOKS API REQUEST:\n"
-      logger.debug request_body
+      logger.debug request_body.force_encoding("UTF-8")
       logger.debug "\n----- FRESHBOOKS API RESPONSE:\n"
-      logger.debug result.body
+      logger.debug result.body.force_encoding("UTF-8")
 
       check_for_api_error(result)
     end
